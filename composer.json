@@ -1,15 +1,22 @@
 {
-    "name": "fekiwebstudio/thumbnailer",
-    "description": "Simple thumbnailer, port of the thumb2 library",
-    "authors": [
-        {
-            "name": "Zsolt",
-            "email": "fekete.zsolt@fekiwebstudio.hu",
-            "role": "Developer"
-        }
-    ],
-    "minimum-stability": "stable",
-    "require": {
-      "intervention/image": "^2.3"
+  "name": "fekiwebstudio/thumbnailer",
+  "description": "Simple thumbnailer, port of the thumb2 library",
+  "authors": [
+    {
+      "name": "Zsolt",
+      "email": "fekete.zsolt@fekiwebstudio.hu",
+      "role": "Developer"
     }
+  ],
+  "minimum-stability": "stable",
+  "require": {
+    "php": ">=5.6.0",
+    "intervention/image": "^2.3",
+    "illuminate/support": "5.*"
+  },
+  "autoload": {
+    "psr-4": {
+      "FekiWebstudio\\Thumbnailer": "src/FekiWebstudio/Thumbnailer"
+    }
+  }
 }
