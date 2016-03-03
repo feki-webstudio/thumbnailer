@@ -1,0 +1,15 @@
+{
+    "name": "fekiwebstudio/thumbnailer",
+    "description": "Simple thumbnailer, port of the thumb2 library",
+    "authors": [
+        {
+            "name": "Zsolt",
+            "email": "fekete.zsolt@fekiwebstudio.hu",
+            "role": "Developer"
+        }
+    ],
+    "minimum-stability": "stable",
+    "require": {
+      "intervention/image": "^2.3"
+    }
+}
