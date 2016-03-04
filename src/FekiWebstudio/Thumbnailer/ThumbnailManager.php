@@ -45,23 +45,35 @@ class ThumbnailManager
 
         $t = new Thumb();
         $t->source = preg_replace("/^\//", "", $params['file']);
-        $t->width = $params['width'];
-        $t->height = $params['height'];
+
+        if (isset($params['width'])) {
+            $t->width = $params['width'];
+        }
+
+        if (isset($params['height'])) {
+            $t->height = $params['height'];
+        }
+
         if (isset($params['crop'])) {
             $t->crop = $params['crop'];
         }
+
         if (isset($params['forceSize'])) {
             //ide majd be kell építeni hogy kis képből is vágjon, hogy arányos legyen
         }
+
         if (isset($params['quality'])) {
             $t->quality = (int)$params['quality'];
         }
+
         if (isset($params['resizeRatio'])) {
             $t->resizeRatio = $params['resizeRatio'];
         }
+
         if (isset($params['cropPos'])) {
             $t->cropPos = $params['cropPos'];
         }
+
         if (! isset($params['wPos']) || $params['wPos'] == '') {
             $params['wPos'] = 'cm';
         }
@@ -71,9 +83,11 @@ class ThumbnailManager
             $arg['position'] = $params['wPos'];
             $t->addWaterMark($arg);
         }
+
         if (isset($params['colorize']) && $params['colorize'] !== "") {
             $t->colorize = $params['colorize'];
         }
+
         $t->source = $t->copyWebImages($t->source);
         preg_match('/[^.]+$/', $params['file'], $math);
 
@@ -85,10 +99,12 @@ class ThumbnailManager
             if ($params['seo'] == '' && isset($params['title']) && $params['title'] != "") {
                 $prefilename = str_slug($params['title']);
             }
+
             if ($params['seo'] != '') {
                 $prefilename = str_slug($params['seo']);
             }
         }
+
         $t->dest = $origdest = $outputPath . "/" . $prefilename . '-' . substr(md5(implode('-',
                 $params)), 0, 4) . '-' . filemtime($t->source) . '.' . $math[0];
 
@@ -113,6 +129,7 @@ class ThumbnailManager
                     $params['srcset'] .= '/' . $t->dest . ' ' . $t->width . 'w ' . $m . 'x, ';
                 }
             }
+
             if ($params['srcset'] !== "") {
                 $params['srcset'] = substr($params['srcset'], 0, -2);
             }

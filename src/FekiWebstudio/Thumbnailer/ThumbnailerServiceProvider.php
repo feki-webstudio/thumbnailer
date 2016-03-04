@@ -32,9 +32,13 @@ class ThumbnailerServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        \App::bind('payment', function()
+        $this->app->singleton('thumb', function ($app) {
+            return new ThumberManager($app);
+        });
+
+        $this->app->bind('thumb', function()
         {
-            return new ThumbFacade();
+            return new ThumbnailManager();
         });
     }
 

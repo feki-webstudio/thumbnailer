@@ -166,6 +166,7 @@ class Thumb
         if ($this->dest == "") {
             return false;
         }
+        
         if (is_file($this->source)) {
             if ($this->_source = $this->loadImage($this->source)) {
                 // Forrás fájl mérete
@@ -429,6 +430,9 @@ class Thumb
     function createImg()
     {
         $info = getimagesize($this->source);
+
+        $dest = public_path($this->dest);
+
         switch ($info[2]) {
             case 1:
                 imagegif($this->_newImg, $this->dest, $this->quality);
@@ -444,9 +448,9 @@ class Thumb
                     $img->setImageCompression(imagick::COMPRESSION_JPEG);
                     $img->setImageCompressionQuality($this->quality);
                     $img->stripImage();
-                    $img->writeImage($this->dest);
+                    $img->writeImage($dest);
                 } else {
-                    imagejpeg($this->_newImg, $this->dest, $this->quality);
+                    imagejpeg($this->_newImg, $dest, $this->quality);
                 }
                 break;
             case 3:
@@ -459,9 +463,9 @@ class Thumb
                     $img->setImageCompression(imagick::COMPRESSION_ZIP);
                     $img->setImageCompressionQuality($this->quality);
                     $img->stripImage();
-                    $img->writeImage($this->dest);
+                    $img->writeImage($dest);
                 } else {
-                    imagepng($this->_newImg, $this->dest);
+                    imagepng($this->_newImg, $dest);
                 }
 
                 break;

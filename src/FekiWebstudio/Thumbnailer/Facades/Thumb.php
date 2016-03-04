@@ -5,7 +5,7 @@
  * @copyright Copyright (c) 2016, Feki Webstudio Kft.
  */
 
-namespace FekiWebstudio\Thumbnailer;
+namespace FekiWebstudio\Thumbnailer\Facades;
 
 use Illuminate\Support\Facades\Facade;
 
@@ -14,13 +14,13 @@ use Illuminate\Support\Facades\Facade;
  *
  * @package FekiWebstudio\Thumbnailer
  */
-class ThumbFacade extends Facade
+class Thumb extends Facade
 {
     /**
      * {@inheritdoc}
      */
     protected static function getFacadeAccessor()
     {
-        return 'ThumbnailManager';
+        return 'thumb';
     }
 }
