@@ -2,6 +2,8 @@
 
 namespace FekiWebstudio\Thumbnailer;
 
+use Imagick;
+
 /*
 $t = new thumb();
 $t->source = 'kep.jpg';
@@ -166,7 +168,7 @@ class Thumb
         if ($this->dest == "") {
             return false;
         }
-        
+
         if (is_file($this->source)) {
             if ($this->_source = $this->loadImage($this->source)) {
                 // Forrás fájl mérete
@@ -354,6 +356,7 @@ class Thumb
                 return $posArray;
             }
         }
+
         return $posArray;
     }
 
