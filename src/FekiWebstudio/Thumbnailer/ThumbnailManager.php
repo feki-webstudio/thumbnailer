@@ -210,7 +210,7 @@ class ThumbnailManager
             $protocol = Request::secure() ? 'https' : 'http';
 
             // Get the current domain
-            $domainParts = explode('.', $_SERVER['HTTP_HOST']);
+            $domainParts = explode('.', Request::getHost());
             $domain = implode('.', array_slice($domainParts, -2));
             $t->dest = sprintf('%s://%s.%s/%s', $protocol, $cacheDomain, $domain, $t->dest);
         } else {
@@ -218,4 +218,3 @@ class ThumbnailManager
         }
     }
 }
-

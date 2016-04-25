@@ -25,6 +25,10 @@ class ThumbnailerServiceProvider extends ServiceProvider
             $configFile => config_path('thumbnailer.php')
         ], 'config');
 
+        // Create output path if it doesn't exist yet
+        if (! is_dir(config('thumbnailer.output_path'))) {
+            mkdir(config('thumbnailer.output_path'), 0777);
+        }
     }
 
     /**

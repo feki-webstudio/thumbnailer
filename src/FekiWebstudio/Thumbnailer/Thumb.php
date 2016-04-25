@@ -121,13 +121,15 @@ class Thumb
      * @param string $dest
      * @return string
      */
-    function copyWebImages($source, $dest = "")
+    public function copyWebImages($source, $dest = "")
     {
-        if (preg_match("/^http:\/\//", $source)) {
+        $outputPath = config('thumbnailer.output_path');
+
+        if (preg_match("/^https?:\/\//", $source)) {
             if ($dest == "") {
                 preg_match("/\.([^\.]{1,4}+)$/", $source, $res);
                 if (isset($res[1])) {
-                    $dest = CACHE_DIR . "/" . md5($source) . $res[0];
+                    $dest = $outputPath . "/" . md5($source) . $res[0];
                 } else {
                     $info = getimagesize($source);
                     $type = $info[2];
@@ -145,7 +147,7 @@ class Thumb
                             $ft = '.jpg';
                             break;
                     }
-                    $dest = CACHE_DIR . "/copy-" . md5($source) . $ft;
+                    $dest = $outputPath . "/copy-" . md5($source) . $ft;
                 }
             }
             if (! is_file($dest)) {
@@ -243,7 +245,7 @@ class Thumb
                 // Csak png, gif, jpg a támogatott
             }
         } else {
-            trigger_error("Nem létező fájl", E_USER_WARNING);
+            throw new \InvalidArgumentException("Nem létező fájl");
         }
     }
 
