@@ -26,8 +26,8 @@ class ThumbnailerServiceProvider extends ServiceProvider
         ], 'config');
 
         // Create output path if it doesn't exist yet
-        if (! is_dir(config('thumbnailer.output_path'))) {
-            mkdir(config('thumbnailer.output_path'), 0777);
+        if (! is_dir(public_path(config('thumbnailer.output_path')))) {
+            mkdir(public_path(config('thumbnailer.output_path'), 0777));
         }
     }
 
